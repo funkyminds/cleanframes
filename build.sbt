@@ -1,59 +1,57 @@
-organization := "io.funkyminds"
+lazy val sparkVersion = "2.4.0"
 
-name := "clean-frames"
+lazy val projectVersion = "0.1.0-SNAPSHOT"
 
-publishMavenStyle := true
+lazy val root = (project in file("."))
+  .configs(IntegrationTest)
+  .settings(
+    name := "clean-frames",
+    version := "0.1.0-SNAPSHOT",
+    organization := "io.funkyminds",
+    scalaVersion := {
+      if (sparkVersion >= "2.0.0") {
+        "2.11.11"
+      } else {
+        "2.10.6"
+      }
+    },
+    crossScalaVersions := {
+      if (sparkVersion >= "2.3.0") {
+        Seq("2.11.11")
+      } else {
+        Seq("2.10.6", "2.11.11")
+      }
+    },
+    scalacOptions ++= Seq(
+      "-Xfatal-warnings",
+      "-language:higherKinds,implicitConversions",
+      "-unchecked",
+      "-deprecation",
+      "-feature"
+    ),
+    javacOptions ++= {
+      val ver = if (sparkVersion >= "2.1.1") "1.8" else "1.7"
 
-version := "0.1.0-SNAPSHOT"
-
-sparkVersion := "2.4.0"
-
-sparkComponents := Seq("core", "sql", "hive")
-
-scalaVersion := {
-  if (sparkVersion.value >= "2.0.0") {
-    "2.11.11"
-  } else {
-    "2.10.6"
-  }
-}
-
-crossScalaVersions := {
-  if (sparkVersion.value >= "2.3.0") {
-    Seq("2.11.11")
-  } else {
-    Seq("2.10.6", "2.11.11")
-  }
-}
-
-javacOptions ++= {
-  val ver = if (sparkVersion.value >= "2.1.1") "1.8" else "1.7"
-  Seq(
-    "-source", ver,
-    "-target", ver,
-    "-Xms2G",
-    "-Xmx2G",
-    "-XX:MaxPermSize=2048M",
-    "-XX:+CMSClassUnloadingEnabled"
+      Seq(
+        "-source", ver,
+        "-target", ver,
+        "-Xms2G",
+        "-Xmx2G",
+        "-XX:MaxPermSize=2048M",
+        "-XX:+CMSClassUnloadingEnabled"
+      )
+    },
+    Defaults.itSettings,
+    libraryDependencies ++= Seq(
+      "com.chuusai" %% "shapeless" % "2.3.3",
+      "org.apache.spark" %% "spark-core" % sparkVersion % Provided,
+      "org.apache.spark" %% "spark-sql" % sparkVersion % Provided,
+      "org.apache.spark" %% "spark-hive" % sparkVersion % Test,
+      "com.holdenkarau" %% "spark-testing-base" % {sparkVersion + "_0.11.0"} % Test,
+      "org.scalatest" %% "scalatest" % "3.0.5" % "test,it"
+    ),
+    parallelExecution in Test := false,
+    fork := true,
+    sparkComponents := Seq("core", "sql", "hive"),
+    publishMavenStyle := true
   )
-}
-
-parallelExecution in Test := false
-fork := true
-
-scalacOptions ++= Seq(
-  "-Xfatal-warnings",
-  "-language:higherKinds",
-  "-unchecked",
-  "-deprecation",
-  "-feature",
-  "-language:implicitConversions"
-)
-
-libraryDependencies ++= {
-  Seq(
-    "com.chuusai" %% "shapeless" % "2.3.3",
-    "com.holdenkarau" %% "spark-testing-base" % s"${sparkVersion.value}_0.11.0" % "test",
-    "org.scalatest" %% "scalatest" % "3.0.5" % "test"
-  )
-}

@@ -17,7 +17,7 @@ my $input = read_file("build.sbt");
 
 my $original_version;
 
-if ($input =~ /version\s+\:\=\s+\"(.+?)\"/) {
+if ($input =~ /\s+lazy\s+val\s+projectVersion\s+\=\s+\"(.+?)\"/) {
     $original_version = $1;
 } else {
     die "Could not extract version";
@@ -32,8 +32,8 @@ foreach my $spark_version (@spark_versions) {
     my $target_version = $spark_version."_".$original_version;
     print "New target version ".$target_version;
     my $new_build = $input;
-    $new_build =~ s/version\s+\:\=\s+\".+?\"/version := "$target_version"/;
-    $new_build =~ s/sparkVersion\s+\:\=\s+\".+?\"/sparkVersion := "$spark_version"/;
+    $new_build =~ s/\s+lazy\s+val\s+projectVersion\s+\=\s+\".+?\"/lazy val projectVersion = "$target_version"\n/;
+    $new_build =~ s/\s+lazy\s+val\s+sparkVersion\s+\=\s+\".+?\"/lazy val sparkVersion = "$spark_version"\n/;
     print `git branch -d release-v$target_version`;
     print `git checkout -b release-v$target_version`;
     print "new build file $new_build hit";
@@ -56,8 +56,8 @@ foreach my $spark_version (@spark_versions) {
     my $target_version = $spark_version."_".$original_version;
     print "Publishing new target version ".$target_version;
     my $new_build = $input;
-    $new_build =~ s/version\s+\:\=\s+\".+?\"/version := "$target_version"/;
-    $new_build =~ s/sparkVersion\s+\:\=\s+\".+?\"/sparkVersion := "$spark_version"/;
+    $new_build =~ s/\s+lazy\s+val\s+projectVersion\s+\=\s+\".+?\"/lazy val projectVersion = "$target_version"/;
+    $new_build =~ s/\s+lazy\s+val\s+sparkVersion\s+\=\s+\".+?\"/lazy val sparkVersion = "$spark_version"/;
     print `git checkout -b release-v$target_version`;
     print "new build file $new_build hit";
     open (OUT, ">build.sbt");
