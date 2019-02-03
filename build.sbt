@@ -1,6 +1,5 @@
-lazy val sparkVersion = "2.4.0"
+lazy val sparkVersion = "2.4.0"lazy val projectVersion = "2.1.0_0.1.0-SNAPSHOT"
 
-lazy val projectVersion = "0.1.0-SNAPSHOT"
 
 lazy val root = (project in file("."))
   .configs(IntegrationTest)
