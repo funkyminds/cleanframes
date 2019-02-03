@@ -32,7 +32,7 @@ foreach my $spark_version (@spark_versions) {
     my $target_version = $spark_version."_".$original_version;
     print "New target version ".$target_version;
     my $new_build = $input;
-    $new_build =~ s/\s+lazy\s+val\s+projectVersion\s+\=\s+\".+?\"/lazy val projectVersion = "$target_version"/;
+    $new_build =~ s/\s+lazy\s+val\s+projectVersion\s+\=\s+\".+?\"/\n\nlazy val projectVersion = "$target_version"/;
     $new_build =~ s/\s+lazy\s+val\s+sparkVersion\s+\=\s+\".+?\"/\nlazy val sparkVersion = "$spark_version"\n/;
     print `git branch -d release-v$target_version`;
     print `git checkout -b release-v$target_version`;
@@ -56,7 +56,7 @@ foreach my $spark_version (@spark_versions) {
     my $target_version = $spark_version."_".$original_version;
     print "Publishing new target version ".$target_version;
     my $new_build = $input;
-    $new_build =~ s/\s+lazy\s+val\s+projectVersion\s+\=\s+\".+?\"/lazy val projectVersion = "$target_version"/;
+    $new_build =~ s/\s+lazy\s+val\s+projectVersion\s+\=\s+\".+?\"/\n\nlazy val projectVersion = "$target_version"/;
     $new_build =~ s/\s+lazy\s+val\s+sparkVersion\s+\=\s+\".+?\"/\nlazy val sparkVersion = "$spark_version"/;
     print `git checkout -b release-v$target_version`;
     print "new build file $new_build hit";
