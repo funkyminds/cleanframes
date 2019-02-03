@@ -6,7 +6,7 @@ lazy val root = (project in file("."))
   .configs(IntegrationTest)
   .settings(
     name := "clean-frames",
-    version := "0.1.0-SNAPSHOT",
+    version := projectVersion,
     organization := "io.funkyminds",
     scalaVersion := {
       if (sparkVersion >= "2.0.0") {
