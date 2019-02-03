@@ -52,8 +52,8 @@ scalacOptions ++= Seq(
 
 libraryDependencies ++= {
   Seq(
-    "com.holdenkarau" %% "spark-testing-base" % s"${sparkVersion.value}_0.11.0" % "test",
     "com.chuusai" %% "shapeless" % "2.3.3",
+    "com.holdenkarau" %% "spark-testing-base" % s"${sparkVersion.value}_0.11.0" % "test",
     "org.scalatest" %% "scalatest" % "3.0.5" % "test"
   )
 }
