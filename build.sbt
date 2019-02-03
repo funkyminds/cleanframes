@@ -8,18 +8,12 @@ lazy val root = (project in file("."))
     name := "clean-frames",
     version := projectVersion,
     organization := "io.funkyminds",
-    scalaVersion := {
-      if (sparkVersion >= "2.0.0") {
-        "2.11.11"
-      } else {
-        "2.10.6"
-      }
-    },
+    scalaVersion := "2.11.12",
     crossScalaVersions := {
       if (sparkVersion >= "2.3.0") {
-        Seq("2.11.11")
+        Seq("2.11.12")
       } else {
-        Seq("2.10.6", "2.11.11")
+        Seq("2.10.6", "2.11.12")
       }
     },
     scalacOptions ++= Seq(
