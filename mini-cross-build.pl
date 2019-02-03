@@ -45,8 +45,8 @@ foreach my $spark_version (@spark_versions) {
     print "building";
     # more more more
     # TODO: change branch to master
-    print "switch back to feature/cross-build-deployment-script";
-    print `git checkout feature/cross-build-deployment-script`;
+    print "switch back to develop";
+    print `git checkout develop`;
     print "built"
 }
 print "Press enter once published to maven central";
