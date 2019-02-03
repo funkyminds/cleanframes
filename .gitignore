@@ -1,5 +1,4 @@
-target/
-project/target/
+**/target/
 .idea
 .idea/*
 .idea_modules
@@ -10,3 +9,4 @@ project/target/
 .sbtrc
 *.class
 *.log
+*.iml
