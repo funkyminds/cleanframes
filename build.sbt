@@ -1,4 +1,3 @@
-
 organization := "io.funkyminds"
 
 name := "clean-frames"

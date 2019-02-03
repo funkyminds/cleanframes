@@ -25,11 +25,23 @@ else {
 
 print "Building original version - $original_version";
 
-print `./sbt/sbt clean`;
+# print `./sbt/sbt clean`;
 print "Cross building for $original_version";
 
 foreach my $spark_version (@spark_versions) {
     my $target_version = $spark_version."_".$original_version;
     print "New target version ".$target_version;
-    print "\n"
+    my $new_build = $input;
+    $new_build =~ s/version\s+\:\=\s+\".+?\"/version := "$target_version"/;
+    $new_build =~ s/sparkVersion\s+\:\=\s+\".+?\"/sparkVersion := "$spark_version"/;
+    print `git branch -d deployment-v$target_version`;
+    print `git checkout -b deployment-v$target_version`;
+    print "new build file $new_build hit";
+    open (OUT, ">build.sbt");
+    print OUT $new_build;
+    close (OUT);
+    # more more more
+    print "building";
+    # more more more
+    print "built"
 }
