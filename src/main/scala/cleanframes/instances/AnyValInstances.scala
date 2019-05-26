@@ -1,6 +1,6 @@
 package cleanframes.instances
 
-import java.{lang => j}
+import org.apache.spark.sql.types._
 
 trait AnyValInstances
   extends IntInstances
@@ -11,13 +11,18 @@ trait AnyValInstances
     with FloatInstances
     with DoubleInstances
     with BooleanInstances
+    with NumericAnyValInstance
 
 trait IntInstances {
-  implicit lazy val stdStringToInt: String => Int = Integer.parseInt
+  implicit lazy val integerType: SparkDataType[Int] = new SparkDataType[Int] {
+    override def getDataType: DataType = IntegerType
+  }
 }
 
 trait ByteInstances {
-  implicit val stdStringToByte: String => Byte = j.Byte.parseByte
+  implicit lazy val byteType: SparkDataType[Byte] = new SparkDataType[Byte] {
+    override def getDataType: DataType = ByteType
+  }
 }
 
 trait CharInstances {
@@ -25,21 +30,30 @@ trait CharInstances {
 }
 
 trait ShortInstances {
-  implicit val stdStringToShort: String => Short = j.Short.parseShort
+  implicit lazy val shortType: SparkDataType[Short] = new SparkDataType[Short] {
+    override def getDataType: DataType = ShortType
+  }
 }
 
 trait LongInstances {
-  implicit val stdStringToLong: String => Long = j.Long.parseLong
+  implicit lazy val longType: SparkDataType[Long] = new SparkDataType[Long] {
+    override def getDataType: DataType = LongType
+  }
 }
 
 trait FloatInstances {
-  implicit val stdStringToFloat: String => Float = j.Float.parseFloat
+  implicit lazy val floatType: SparkDataType[Float] = new SparkDataType[Float] {
+    override def getDataType: DataType = FloatType
+  }
 }
 
 trait DoubleInstances {
-  implicit val stdStringToDouble: String => Double = j.Double.parseDouble
+  implicit lazy val doubleType: SparkDataType[Double] = new SparkDataType[Double] {
+    override def getDataType: DataType = DoubleType
+  }
 }
 
+// TODO: add some trim and built-in spark functions
 trait BooleanInstances {
-  implicit val stdStringToBoolean: String => Boolean = j.Boolean.parseBoolean
+  implicit val stdStringToBoolean: String => Boolean = java.lang.Boolean.parseBoolean
 }

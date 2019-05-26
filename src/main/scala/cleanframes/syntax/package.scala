@@ -3,7 +3,6 @@ package cleanframes
 import org.apache.spark.sql.DataFrame
 
 package object syntax {
-
   implicit class CleanerOps(frame: DataFrame) {
     def clean[A](implicit env: Cleaner[A]): DataFrame = {
       frame
@@ -11,5 +10,4 @@ package object syntax {
         .selectExpr(s"$reserved_root_level_alias.*")
     }
   }
-
 }
