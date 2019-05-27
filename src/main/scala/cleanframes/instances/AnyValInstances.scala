@@ -1,5 +1,7 @@
 package cleanframes.instances
 
+import cleanframes.Cleaner
+import org.apache.spark.sql.functions.{lower, trim, when, lit}
 import org.apache.spark.sql.types._
 
 trait AnyValInstances
@@ -53,7 +55,15 @@ trait DoubleInstances {
   }
 }
 
-// TODO: add some trim and built-in spark functions
 trait BooleanInstances {
-  implicit val stdStringToBoolean: String => Boolean = java.lang.Boolean.parseBoolean
+  implicit lazy val booleanCleaner: Cleaner[Option[Boolean]] = {
+    Cleaner.materialize { (frame, name, alias) =>
+      List(
+        when(
+          trim(lower(frame.col(name.get))) === "true",
+          lit(true) cast BooleanType
+        ).otherwise(false) as alias.get
+      )
+    }
+  }
 }
