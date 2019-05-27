@@ -42,8 +42,8 @@ class UdfApproachTest
 
     result should {
       contain theSameElementsAs Seq(
-        UdfModel(Some(1), Some(2.0), Some(3.0f)),
-        UdfModel(Some(1), None, Some(3.0f))
+        UdfModel(Some(2), Some(6.0), Some(103.0f)),
+        UdfModel(Some(2), None, Some(103.0f))
       )
     }
   }

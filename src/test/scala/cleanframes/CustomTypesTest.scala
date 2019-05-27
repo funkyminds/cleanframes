@@ -45,7 +45,7 @@ class CustomTypesTest
     import cleanframes.{CustomTypes => Model} // just for readability sake
 
     result should {
-      contain theSameElementsAs Array(
+      contain theSameElementsAs Seq(
         // @formatter:off
         Model(Some(CustomType()),   Some(1),  Some(false)),
         Model(None,                 Some(2),  Some(true)),
