@@ -12,7 +12,8 @@ import org.scalatest.{FlatSpec, Matchers}
   *
   * For example, DecimalType needs to parametrized by a precision and a scale.
   */
-class AddNewSparkDataTypeSupportTest extends FlatSpec
+class AddNewSparkDataTypeSupportTest
+  extends FlatSpec
   with Matchers
   with DataFrameSuiteBase {
 
