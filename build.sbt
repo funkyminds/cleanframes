@@ -78,10 +78,13 @@ lazy val publishSettings = Seq(
   )),
 
   developers := List(
-    Developer("dawrut", "Dawid Rutowicz", "", url("https://github.com/funkyminds/"))
+    Developer("dawrutowicz", "Dawid Rutowicz", "dawid.rutowicz@gmail.com", url("https://github.com/funkyminds/"))
   ),
 
   //credentials += Credentials(Path.userHome / ".ivy2" / ".spcredentials")
-  credentials ++= Seq(Credentials(Path.userHome / ".ivy2" / ".sbtcredentials"), Credentials(Path.userHome / ".ivy2" / ".sparkcredentials")),
+  credentials ++= Seq(
+    Credentials(Path.userHome / ".ivy2" / ".sbtcredentials"),
+    Credentials(Path.userHome / ".ivy2" / ".sparkcredentials")
+  ),
   useGpg := true
 )
