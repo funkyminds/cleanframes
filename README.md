@@ -1,4 +1,7 @@
+
 # Clean Frames
+
+[![Build Status](https://travis-ci.org/funkyminds/cleanframes.svg?branch=master)](https://travis-ci.org/funkyminds/cleanframes)
 
 **Clean Frames** is a library for Apache Spark SQL module. It provides a type class for data cleansing.
 
