@@ -13,7 +13,7 @@ The current stable version is 0.3.0, which is cross built against Scala (2.10-2.
 If you're using SBT, add the following line to your build file:
 
 ```scala
-libraryDependencies += "io.funkyminds" %% "cleanframes" % "0.3.0-SNAPSHOT"
+libraryDependencies += "io.funkyminds" %% "cleanframes" % "2.4.3_0.3.0-SNAPSHOT"
 ```
 
 ## Quick Start
