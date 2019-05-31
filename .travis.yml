@@ -7,7 +7,6 @@ dist: precise
 cache:
   directories:
     - $HOME/.ivy2
-    - $HOME/spark
     - $HOME/.sbt/launchers
 
 jdk:
@@ -16,11 +15,8 @@ jdk:
 scala:
   - 2.10.4
 
-before_install:
-  - export PATH=$HOME/.local/bin:$PATH
-
 script:
-  - SPARK_CONF_DIR=./log4j/ ./sbt/sbt clean test
+  - ./sbt/sbt clean test
 
 notifications:
   email:
