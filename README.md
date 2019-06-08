@@ -18,7 +18,7 @@ libraryDependencies += "io.funkyminds" %% "cleanframes" % "2.4.3_0.3.0-SNAPSHOT"
 
 ## Quick Start
 
-Assuming DataFrame is loaded from csv file of following content:
+Assuming DataFrame is loaded from a csv file with following content:
 ```csv
 1,true,1.0
 lmfao,true,2.0
@@ -29,7 +29,7 @@ lmfao,true,2.0
 
 library clean data to:
 
-```
+```scala
 Example(Some(1),  Some(true),   Some(1.0f)),
 Example(None,     Some(true),   Some(2.0f)),
 Example(Some(3),  Some(false),  Some(3.0f)),
@@ -37,7 +37,7 @@ Example(Some(4),  Some(true),   None),
 Example(Some(5),  Some(true),   Some(5.0f))
 ```
 
-with minimal code:
+with a minimal code:
 
 ```scala
 import cleanframes.instances.all._
@@ -65,7 +65,7 @@ frame
 
 would result in:
 
-```
+```scala
 Example(Some(1),  Some(true),   Some(1.0f)),
 Example(None,     None,         None),
 Example(Some(3),  Some(false),  Some(3.0f)),
