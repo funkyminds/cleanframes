@@ -94,7 +94,7 @@ val cleaned = frame.withColumn(
   "col2",
   when(
     trim(lower(frame.col("col2"))) === "true",
-    lit(true) cast BooleanType
+    lit(true)
   ).otherwise(false)
 ).withColumn(
   "col3",
