@@ -9,7 +9,7 @@ lazy val root = (project in file("."))
     publishSettings,
     publishMavenStyle := true,
     sparkVersion := System.getProperty("sparkVersion", "2.4.3"),
-    cleanframesVersion := "0.3.0-SNAPSHOT",
+    cleanframesVersion := "0.3.0",
     version := sparkVersion.value + "_" + cleanframesVersion.value,
     organization := "io.funkyminds",
     scalaVersion := "2.11.12",

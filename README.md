@@ -12,7 +12,7 @@ The current stable version is 0.3.0, which is cross built against Scala (2.11-2.
 If you're using SBT, add the following line to your build file:
 
 ```scala
-libraryDependencies += "io.funkyminds" %% "cleanframes" % "2.4.3_0.3.0-SNAPSHOT"
+libraryDependencies += "io.funkyminds" %% "cleanframes" % "2.4.3_0.3.0"
 ```
 
 or Maven dependency:
@@ -21,7 +21,7 @@ or Maven dependency:
 <dependency>
   <groupId>io.funkyminds</groupId>
   <artifactId>cleanframes_2.12</artifactId>
-  <version>2.4.3_0.3.0-SNAPSHOT</version>
+  <version>2.4.3_0.3.0</version>
 </dependency>
 ```
 
