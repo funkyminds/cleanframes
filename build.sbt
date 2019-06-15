@@ -8,18 +8,16 @@ lazy val root = (project in file("."))
     name := "cleanframes",
     publishSettings,
     publishMavenStyle := true,
-    sparkVersion := System.getProperty("sparkVersion", "2.4.0"),
+    sparkVersion := System.getProperty("sparkVersion", "2.4.3"),
     cleanframesVersion := "0.3.0-SNAPSHOT",
     version := sparkVersion.value + "_" + cleanframesVersion.value,
     organization := "io.funkyminds",
-    scalaVersion := "2.11.12",
+    scalaVersion := "2.12.8",
     crossScalaVersions := {
       if (sparkVersion.value >= "2.4.0") {
-        Seq("2.11.11", "2.12.7")
-      } else if (sparkVersion.value >= "2.3.0") {
-        Seq("2.11.11")
+        Seq("2.11.12", "2.12.8")
       } else {
-        Seq("2.10.6", "2.11.11")
+        Seq("2.11.12")
       }
     },
     scalacOptions ++= Seq(
@@ -42,14 +40,13 @@ lazy val root = (project in file("."))
       )
     },
     javaOptions ++= Seq("-Xms2G", "-Xmx2G", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled"),
-    Defaults.itSettings,
     libraryDependencies ++= Seq(
       // @formatter:off
       "com.chuusai"       %% "shapeless"            % "2.3.3",
       "org.apache.spark"  %% "spark-core"           % sparkVersion.value                % Provided,
       "org.apache.spark"  %% "spark-sql"            % sparkVersion.value                % Provided,
       "org.apache.spark"  %% "spark-hive"           % sparkVersion.value                % Provided,
-      "com.holdenkarau"   %% "spark-testing-base"   % {sparkVersion.value + "_0.12.0"}  % Test,
+      "com.holdenkarau"   %% "spark-testing-base"   % {sparkVersion.value + "_0.12.0"}  % Test, // TODO: deliver as a parameter
       "org.scalatest"     %% "scalatest"            % "3.0.5"                           % "test,it"
       // @formatter:om
     ),
@@ -78,13 +75,15 @@ lazy val publishSettings = Seq(
   )),
 
   developers := List(
-    Developer("dawrutowicz", "Dawid Rutowicz", "dawid.rutowicz@gmail.com", url("https://github.com/funkyminds/"))
+    Developer(
+      id = "dawrutowicz",
+      name = "Dawid Rutowicz",
+      email = "dawid.rutowicz@gmail.com",
+      url = url("https://github.com/funkyminds/"))
   ),
 
-  //credentials += Credentials(Path.userHome / ".ivy2" / ".spcredentials")
   credentials ++= Seq(
-    Credentials(Path.userHome / ".ivy2" / ".sbtcredentials"),
-    Credentials(Path.userHome / ".ivy2" / ".sparkcredentials")
+    Credentials(Path.userHome / ".sbt" / "sonatype_credential")
   ),
   useGpg := true
 )
