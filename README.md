@@ -8,7 +8,7 @@
 
 ## Getting Clean Frames
 
-The current stable version is 0.3.0, which is cross built against Scala (2.11-2.12) and Apache Spark (2.0.0-2.4.3).
+The current stable version is 0.3.0, which is cross built against Scala (2.11-2.12) and Apache Spark (2.1.0-2.4.3).
 
 If you're using SBT, add the following line to your build file:
 
