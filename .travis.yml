@@ -1,0 +1,24 @@
+language: scala
+
+sudo: required
+
+dist: precise
+
+cache:
+  directories:
+    - $HOME/.ivy2
+    - $HOME/.sbt/launchers
+
+jdk:
+  - oraclejdk8
+
+scala:
+  - 2.10.4
+
+script:
+  - ./sbt/sbt clean test
+
+notifications:
+  email:
+    recipients:
+      - dawid.rutowicz@gmail.com

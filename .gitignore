@@ -1,2 +1,12 @@
+**/target/
+.idea
+.idea/*
+.idea_modules
+.lib
+.history
+.DS_Store
+.*.swp
+.sbtrc
 *.class
 *.log
+*.iml
