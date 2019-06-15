@@ -12,7 +12,7 @@ lazy val root = (project in file("."))
     cleanframesVersion := "0.3.0-SNAPSHOT",
     version := sparkVersion.value + "_" + cleanframesVersion.value,
     organization := "io.funkyminds",
-    scalaVersion := "2.12.8",
+    scalaVersion := "2.11.12",
     crossScalaVersions := {
       if (sparkVersion.value >= "2.4.0") {
         Seq("2.11.12", "2.12.8")
@@ -43,11 +43,11 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       // @formatter:off
       "com.chuusai"       %% "shapeless"            % "2.3.3",
-      "org.apache.spark"  %% "spark-core"           % sparkVersion.value                % Provided,
-      "org.apache.spark"  %% "spark-sql"            % sparkVersion.value                % Provided,
-      "org.apache.spark"  %% "spark-hive"           % sparkVersion.value                % Provided,
-      "com.holdenkarau"   %% "spark-testing-base"   % {sparkVersion.value + "_0.12.0"}  % Test, // TODO: deliver as a parameter
-      "org.scalatest"     %% "scalatest"            % "3.0.5"                           % "test,it"
+      "org.apache.spark"  %% "spark-core"           % sparkVersion.value                                   % Provided,
+      "org.apache.spark"  %% "spark-sql"            % sparkVersion.value                                   % Provided,
+      "org.apache.spark"  %% "spark-hive"           % sparkVersion.value                                   % Provided,
+      "com.holdenkarau"   %% "spark-testing-base"   % {sparkVersion.value + "_" + "0.12.0"}                % Test,
+      "org.scalatest"     %% "scalatest"            % "3.0.5"                                              % "test,it"
       // @formatter:om
     ),
     parallelExecution in Test := false,
