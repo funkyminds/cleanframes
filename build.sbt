@@ -79,7 +79,7 @@ lazy val publishSettings = Seq(
       id = "dawrutowicz",
       name = "Dawid Rutowicz",
       email = "dawid.rutowicz@gmail.com",
-      url = url("https://github.com/funkyminds/"))
+      url = url("https://funkyminds.io/"))
   ),
 
   credentials ++= Seq(
