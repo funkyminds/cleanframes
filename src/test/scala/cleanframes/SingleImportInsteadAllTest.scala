@@ -34,7 +34,7 @@ class SingleImportInsteadAllTest
       .toDF("col1")
 
     // import standard functions for conversions shipped with the library
-    import cleanframes.instances.all._
+    import cleanframes.instances.int._
 
     val result = input
       // call cleanframes API

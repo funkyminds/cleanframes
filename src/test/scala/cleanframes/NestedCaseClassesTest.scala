@@ -19,10 +19,12 @@ class NestedCaseClassesTest
     // define test data for a dataframe
     val input = Seq(
       // @formatter:off
-      ("0",           "1",          "0",           "1",           null),
-      (null,          "2",          null,          "2",           "true"),
+      ("1",           "1",          "1",           "1",           null),
+      (null,          "2",          null,          "2",           "corrupted"),
       ("corrupted",   null,         "corrupted",   null,          "true"),
-      ("0",           "corrupted",  "0",           "corrupted",   "false")
+      ("4",           "corrupted",  "4",           "4",           "false"),
+      ("5",           "5",          "5",           "corrupted",   "false"),
+      ("6",           "6",          "6",           "6",           "true")
       // @formatter:on
     )
       // give column names that are known to you
@@ -43,18 +45,20 @@ class NestedCaseClassesTest
       ) as "b",
       input.col("col5") as "c"
     )
-    val result = renamed
-      .clean[AB]
+
+    val result = renamed.clean[AB]
       .as[AB]
       .collect
 
     result should {
       contain theSameElementsAs Seq(
         // @formatter:off
-        AB( A(Some(0), Some(1.0f)), B(Some(0.0f), Some(1.0)), Some(false)),
-        AB( A(None,    Some(2.0f)), B(None,       Some(2.0)), Some(true)),
-        AB( A(None,    None),       B(None,       None),      Some(true)),
-        AB( A(Some(0), None),       B(Some(0.0f), None),      Some(false))
+        AB( A(Some(1), Some(1)),  B(Some(1),  Some(1.0)), Some(false)),
+        AB( A(None,    Some(2)),  B(None,     Some(2.0)), Some(false)),
+        AB( A(None,    None),     B(None,     None),      Some(true)),
+        AB( A(Some(4), None),     B(Some(4),  Some(4.0)), Some(false)),
+        AB( A(Some(5), Some(5)),  B(Some(5),  None),      Some(false)),
+        AB( A(Some(6), Some(6)),  B(Some(6),  Some(6.0)), Some(true))
         // @formatter:on
       )
     }

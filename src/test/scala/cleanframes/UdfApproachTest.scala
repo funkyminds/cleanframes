@@ -21,8 +21,13 @@ class UdfApproachTest
 
     val input = Seq(
       // @formatter:off
-      ("1",   "2",          "3"),
-      ("1",   "corrupted",  "3")
+      ("1",   "1",          "1"),
+      ("2",   "corrupted",  "2"),
+      ("3",   "3",          "corrupted"),
+      ("4",   null,         "4"),
+      (null,  "5",          "5"),
+      (null,  "corrupted",  null),
+      ("7",   "7",          "7")
       // @formatter:on
     )
       // important! dataframe's column names must match parameter names of the case class passed to `.clean` method
@@ -42,8 +47,15 @@ class UdfApproachTest
 
     result should {
       contain theSameElementsAs Seq(
-        UdfModel(Some(2), Some(6.0), Some(103.0f)),
-        UdfModel(Some(2), None, Some(103.0f))
+        // @formatter:off
+        UdfModel(Some(2),   Some(3.0),  Some(101.0f)),
+        UdfModel(Some(4),   None,       Some(102.0f)),
+        UdfModel(Some(6),   Some(9.0),  None),
+        UdfModel(Some(8),   None,       Some(104.0f)),
+        UdfModel(None,      Some(15.0), Some(105.0f)),
+        UdfModel(None,      None,       None),
+        UdfModel(Some(14),  Some(21.0), Some(107.0f))
+        // @formatter:on
       )
     }
   }
